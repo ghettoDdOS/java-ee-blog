@@ -10,17 +10,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RoleServlet
+ * Servlet implementation class AuthorsServlet
  */
-@WebServlet("/HelloRoleServlet")
-public class RoleServlet extends HttpServlet {
+@WebServlet("/authors")
+public class AuthorsServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public RoleServlet() {
+  public AuthorsServlet() {
     super();
     // TODO Auto-generated constructor stub
   }
@@ -34,7 +34,7 @@ public class RoleServlet extends HttpServlet {
     response.setContentType("text/html");
     PrintWriter writer = response.getWriter();
     try {
-      writer.println("<h2>Привет RoleServlet</h2>");
+      writer.println("<h2>Привет AuthorsServlet</h2>");
     } finally {
       writer.close();
     }
