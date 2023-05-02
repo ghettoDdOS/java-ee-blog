@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,8 +20,8 @@
     <div id="main">
       <h2>Функции системы</h2>
       <ul>
-        <li><a href="#">Авторы</a></li>
-        <li><a href="#">Блоги</a></li>
+        <li><a href="authors/">Авторы</a></li>
+        <li><a href="blogs/">Блоги</a></li>
       </ul>
     </div>
     <jsp:include page="jspf/footer.jsp" />
