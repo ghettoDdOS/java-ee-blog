@@ -19,8 +19,8 @@
     <div id="main">
       <h2>Функции системы</h2>
       <ul>
-        <li><a href="#">Сотрудники</a></li>
-        <li><a href="#">Должности</a></li>
+        <li><a href="#">Авторы</a></li>
+        <li><a href="#">Блоги</a></li>
       </ul>
     </div>
     <jsp:include page="jspf/footer.jsp" />

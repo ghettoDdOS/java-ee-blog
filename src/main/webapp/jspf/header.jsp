@@ -4,9 +4,9 @@
     ><img
       alt="Логотип"
       id="top-image"
-      src="#"
+      src="images/logo.png"
   /></a>
   <div id="user-panel">
-    <h1>Управление персоналом</h1>
+    <h1>Блог</h1>
   </div>
 </header>
