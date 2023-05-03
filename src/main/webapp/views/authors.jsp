@@ -4,28 +4,28 @@
 <%@ page import="domain.Author"%>
 
 <%
-  Role a1 = new Author(
+  Author a1 = new Author(
     1l,
     "Аверченко Аркадий Тимофеевич",
     "test1@test.ru"
   );
-  Role a2 = new Author(
+  Author a2 = new Author(
     2l,
     "Аксаков Сергей Тимофеевич",
     "test2@test.ru"
   );
-  Role a3= new Author(
+  Author a3= new Author(
     3l,
     "Астафьев Виктор Петрович",
     "test3@test.ru"
   );
-  Role a4 = new Author(
+  Author a4 = new Author(
     4l,
     "Булгаков Михаил Афанасьевич",
     "test4@test.ru"
   );
 
-  Role[] authors = new Author[]{a1, a2, a3, a4};
+  Author[] authors = new Author[]{a1, a2, a3, a4};
 
   int length = authors.length;
   pageContext.setAttribute("authors", authors);
