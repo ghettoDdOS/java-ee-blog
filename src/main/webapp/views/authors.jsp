@@ -1,34 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page import="domain.Author"%>
-
 <%
-  Author a1 = new Author(
-    1l,
-    "Аверченко Аркадий Тимофеевич",
-    "test1@test.ru"
-  );
-  Author a2 = new Author(
-    2l,
-    "Аксаков Сергей Тимофеевич",
-    "test2@test.ru"
-  );
-  Author a3= new Author(
-    3l,
-    "Астафьев Виктор Петрович",
-    "test3@test.ru"
-  );
-  Author a4 = new Author(
-    4l,
-    "Булгаков Михаил Афанасьевич",
-    "test4@test.ru"
-  );
+Author a1 = new Author(
+  1l,
+  "Аверченко Аркадий Тимофеевич",
+  "test1@test.ru"
+);
+Author a2 = new Author(
+  2l,
+  "Аксаков Сергей Тимофеевич",
+  "test2@test.ru"
+);
+Author a3= new Author(
+  3l,
+  "Астафьев Виктор Петрович",
+  "test3@test.ru"
+);
+Author a4 = new Author(
+  4l,
+  "Булгаков Михаил Афанасьевич",
+  "test4@test.ru"
+);
+Author[] authors = new Author[]{a1, a2, a3,a4};
 
-  Author[] authors = new Author[]{a1, a2, a3, a4};
-
-  int length = authors.length;
-  pageContext.setAttribute("authors", authors);
+int length = authors.length;
+pageContext.setAttribute("authors", authors);
 %>
 
 <!DOCTYPE html>
@@ -49,7 +46,7 @@
     <title>Авторы</title>
   </head>
   <body>
-    <jsp:include page="jspf/header.jsp" />
+    <jsp:include page="/jspf/header.jsp" />
     <div id="main">
       <section>
         <aside class="leftAside">
@@ -87,14 +84,14 @@
               action=""
             >
               <p>
-                <label for="namerole">ФИО </label>
+                <label for="fullName">ФИО </label>
                 <input
                   type="text"
                   name="fullName"
                 />
               </p>
               <p>
-                <label for="namerole">E-mail </label>
+                <label for="email">E-mail </label>
                 <input
                   type="text"
                   name="email"
@@ -108,6 +105,6 @@
         </article>
       </section>
     </div>
-    <jsp:include page="jspf/footer.jsp" />
+    <jsp:include page="/jspf/footer.jsp" />
   </body>
 </html>
