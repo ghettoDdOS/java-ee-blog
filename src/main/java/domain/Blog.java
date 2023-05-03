@@ -106,8 +106,8 @@ public class Blog {
     this.idAuthor = idAuthor;
   }
 
-  public Author getAuthor() {
-    return author;
+  public String getAuthor() {
+    return author.getFullName();
   }
 
   public void setAuthor(Author author) {
