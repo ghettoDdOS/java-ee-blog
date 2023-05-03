@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -32,12 +32,8 @@ public class AuthorsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     response.setContentType("text/html");
-    PrintWriter writer = response.getWriter();
-    try {
-      writer.println("<h2>Привет AuthorsServlet</h2>");
-    } finally {
-      writer.close();
-    }
+    RequestDispatcher view = getServletContext().getRequestDispatcher("/views/authors.jsp");
+    view.forward(request, response);
   }
 
   /**
