@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Класс для данных блога
@@ -16,7 +17,7 @@ public class Blog {
   private String content;
 
   // Дата создания
-  private Date createdAt;
+  private LocalDateTime createdAt;
 
   // Внешний ключ -ссылка на сущность Author
   private Long idAuthor;
@@ -57,7 +58,7 @@ public class Blog {
       String content,
       Long idAuthor,
       Author author,
-      Date createdAt) {
+      LocalDateTime createdAt) {
     this.id = id;
     this.title = title;
     this.content = content;
@@ -90,11 +91,11 @@ public class Blog {
     this.content = content;
   }
 
-  public Date getCreatedAt() {
-    return createdAt;
+  public String getCreatedAt() {
+    return createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
   }
 

@@ -1,6 +1,7 @@
 package domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Класс данных об авторах
@@ -13,7 +14,7 @@ public class Author {
   // E-mail
   private String email;
   // Дата регистрации
-  private Date createdAt;
+  private LocalDateTime createdAt;
 
   public Author() {
   }
@@ -29,7 +30,7 @@ public class Author {
     this.email = email;
   }
 
-  public Author(Long id, String fullName, String email, Date createdAt) {
+  public Author(Long id, String fullName, String email, LocalDateTime createdAt) {
     this.id = id;
     this.fullName = fullName;
     this.email = email;
@@ -61,11 +62,11 @@ public class Author {
     this.email = email;
   }
 
-  public Date getCreatedAt() {
-    return createdAt;
+  public String getCreatedAt() {
+    return createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
   }
 
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
