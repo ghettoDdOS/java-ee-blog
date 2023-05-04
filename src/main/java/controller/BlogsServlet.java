@@ -3,8 +3,11 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import dao.ConnectionProperty;
@@ -29,6 +32,7 @@ public class BlogsServlet extends HttpServlet {
   ConnectionProperty prop;
   String select_all_blogs = "SELECT id, title, content, created_at, id_author FROM blog";
   String select_all_authors = "SELECT id, full_name, email, created_at FROM author";
+  String insert_blog = "INSERT INTO blog (title, content, created_at, id_author) VALUES(?,?,?,?)";
   ArrayList<Author> authors = new ArrayList<Author>();
   ArrayList<Blog> blogs = new ArrayList<Blog>();
   String userPath;
@@ -117,7 +121,22 @@ public class BlogsServlet extends HttpServlet {
    */
   protected void doPost(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
-    // TODO Auto-generated method stub
+    EmpConnBuilder builder = new EmpConnBuilder();
+    try (Connection conn = builder.getConnection()) {
+      String title = request.getParameter("title");
+      String content = request.getParameter("content");
+      Long idAuthor = Long.parseLong(request.getParameter("id_author"));
+      PreparedStatement preparedStatement = conn.prepareStatement(insert_blog);
+      preparedStatement.setString(1, title);
+      preparedStatement.setString(2, content);
+      preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+      preparedStatement.setLong(4, idAuthor);
+      preparedStatement.executeUpdate();
+    } catch (Exception e) {
+      System.out.println(e);
+      RequestDispatcher view = getServletContext().getRequestDispatcher("/views/blogs.jsp");
+      view.forward(request, response);
+    }
     doGet(request, response);
   }
 }

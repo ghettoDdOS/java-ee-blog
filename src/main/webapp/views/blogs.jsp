@@ -76,21 +76,20 @@
               </p>
               <p>
                 <label for="author">Автор</label>
-                <select>
+                <select name="id_author">
                   <option disabled>Выберите автора</option>
                   <c:forEach
                     var="author"
                     items="${authors}"
                   >
-                    <option value="${author}">${author.getFullName()}</option>
+                    <option value="${author.getId()}">${author.getFullName()}</option>
                   </c:forEach>
                 </select>
               </p>
+              <p>
+                <button type="submit">Добавить</button>
+              </p>
             </form>
-
-            <p>
-              <button type="submit">Добавить</button>
-            </p>
           </div>
         </article>
       </section>
