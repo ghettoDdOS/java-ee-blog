@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class AuthorsServlet extends HttpServlet {
 
   ConnectionProperty prop;
   String select_all_authors = "SELECT id, full_name, email, created_at FROM author";
+  String insert_author = "INSERT INTO author (full_name, email, created_at) VALUES(?, ?, ?)";
   ArrayList<Author> authors = new ArrayList<Author>();
   String userPath;
 
@@ -77,7 +79,28 @@ public class AuthorsServlet extends HttpServlet {
    */
   protected void doPost(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
-    // TODO Auto-generated method stub
+    EmpConnBuilder builder = new EmpConnBuilder();
+    try (Connection conn = builder.getConnection()) {
+      String fullName = request.getParameter("fullName");
+      String email = request.getParameter("email");
+
+      Author newAuthor = new Author(fullName, email);
+      try (PreparedStatement preparedStatement = conn.prepareStatement(insert_author)) {
+        preparedStatement.setString(
+            1, newAuthor.getFullName());
+        preparedStatement.setString(
+            2, newAuthor.getEmail());
+        preparedStatement.setTimestamp(
+            3, newAuthor.getCreatedAtTimestamp());
+        preparedStatement.executeUpdate();
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+      RequestDispatcher view = getServletContext().getRequestDispatcher("/views/authors.jsp");
+      view.forward(request, response);
+    }
     doGet(request, response);
   }
 }

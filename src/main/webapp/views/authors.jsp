@@ -74,10 +74,10 @@
                   name="email"
                 />
               </p>
+              <p>
+                <button type="submit">Добавить</button>
+              </p>
             </form>
-            <p>
-              <button type="submit">Добавить</button>
-            </p>
           </div>
         </article>
       </section>
