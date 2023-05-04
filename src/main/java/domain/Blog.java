@@ -1,5 +1,6 @@
 package domain;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -93,6 +94,10 @@ public class Blog {
 
   public String getCreatedAt() {
     return createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+  }
+
+  public Timestamp getCreatedAtTimestamp() {
+    return Timestamp.valueOf(createdAt);
   }
 
   public void setCreatedAt(LocalDateTime createdAt) {

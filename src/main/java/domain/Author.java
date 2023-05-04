@@ -1,5 +1,6 @@
 package domain;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,6 +23,7 @@ public class Author {
   public Author(String fullName, String email) {
     this.fullName = fullName;
     this.email = email;
+    this.createdAt = LocalDateTime.now();
   }
 
   public Author(Long id, String fullName, String email) {
@@ -64,6 +66,10 @@ public class Author {
 
   public String getCreatedAt() {
     return createdAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+  }
+
+  public Timestamp getCreatedAtTimestamp() {
+    return Timestamp.valueOf(createdAt);
   }
 
   public void setCreatedAt(LocalDateTime createdAt) {
