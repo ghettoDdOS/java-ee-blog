@@ -4,61 +4,6 @@
 <%@ page import="domain.Author"%>
 <%@ page import="domain.Blog"%>
 
-<%
-Author a1 = new Author(
-  1l,
-  "Аверченко Аркадий Тимофеевич",
-  "test1@test.ru"
-);
-Author a2 = new Author(
-  2l,
-  "Аксаков Сергей Тимофеевич",
-  "test2@test.ru"
-);
-Author a3= new Author(
-  3l,
-  "Астафьев Виктор Петрович",
-  "test3@test.ru"
-);
-Author a4 = new Author(
-  4l,
-  "Булгаков Михаил Афанасьевич",
-  "test4@test.ru"
-);
-Author[] authors = new Author[]{a1, a2, a3,a4};
-
-pageContext.setAttribute("authors", authors);
-
-Blog b1 = new Blog(
-  "Блог первый",
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  1l,
-  a1
-);
-Blog b2 = new Blog(
-  "Блог второй",
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  2l,
-  a2
-);
-Blog b3 = new Blog(
-  "Блог третий",
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  3l,
-  a3
-);
-Blog b4 = new Blog(
-  "Блог четвертый",
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  4l,
-  a4
-);
-
-Blog[] blogs = new Blog[]{b1, b2, b3, b4};
-
-pageContext.setAttribute("blogs", blogs);
-%>
-
 <!DOCTYPE html>
 <html>
   <link
@@ -88,6 +33,7 @@ pageContext.setAttribute("blogs", blogs);
               <th>Заголовок</th>
               <th>Содержание</th>
               <th>Автор</th>
+              <th>Дата создания</th>
             </tr>
           </thead>
           <tbody>
@@ -100,6 +46,7 @@ pageContext.setAttribute("blogs", blogs);
                 <td>${blog.getTitle()}</td>
                 <td>${blog.getContent()}</td>
                 <td>${blog.getAuthor()}</td>
+                <td>${blog.getCreatedAt()}</td>
               </tr>
             </c:forEach>
           </tbody>
@@ -130,7 +77,7 @@ pageContext.setAttribute("blogs", blogs);
               <p>
                 <label for="author">Автор</label>
                 <select>
-                  <option disabled>Выберите должность</option>
+                  <option disabled>Выберите автора</option>
                   <c:forEach
                     var="author"
                     items="${authors}"

@@ -1,7 +1,16 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import dao.ConnectionProperty;
+import dao.EmpConnBuilder;
+import domain.Author;
+import domain.Blog;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,12 +26,33 @@ public class BlogsServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
+  ConnectionProperty prop;
+  String select_all_blogs = "SELECT id, title, content, created_at, id_author FROM blog";
+  String select_all_authors = "SELECT id, full_name, email, created_at FROM author";
+  ArrayList<Author> authors = new ArrayList<Author>();
+  ArrayList<Blog> blogs = new ArrayList<Blog>();
+  String userPath;
+
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public BlogsServlet() {
+  public BlogsServlet() throws FileNotFoundException, IOException {
     super();
-    // TODO Auto-generated constructor stub
+    prop = new ConnectionProperty();
+  }
+
+  // Поиск автора по id
+  private Author FindById(Long id, ArrayList<Author> authors) {
+    if (authors != null) {
+      for (Author a : authors) {
+        if ((a.getId()).equals(id)) {
+          return a;
+        }
+      }
+    } else {
+      return null;
+    }
+    return null;
   }
 
   /**
@@ -32,6 +62,51 @@ public class BlogsServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     response.setContentType("text/html");
+
+    EmpConnBuilder builder = new EmpConnBuilder();
+
+    try (Connection conn = builder.getConnection()) {
+      // Загрузка всех авторов
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery(select_all_authors);
+      if (rs != null) {
+        authors.clear();
+        while (rs.next()) {
+          authors.add(new Author(
+              rs.getLong("id"),
+              rs.getString("full_name"),
+              rs.getString("email"),
+              rs.getTimestamp("created_at").toLocalDateTime()));
+        }
+        rs.close();
+        request.setAttribute("authors", authors);
+      } else {
+        System.out.println("Ошибка загрузки author");
+      }
+
+      // Загрузка всех блогов
+      long id;
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(select_all_blogs);
+      if (rs != null) {
+        blogs.clear();
+        while (rs.next()) {
+          id = rs.getLong("id_author");
+          blogs.add(new Blog(
+              rs.getLong("id"),
+              rs.getString("title"),
+              rs.getString("content"),
+              id,
+              FindById(id, authors),
+              rs.getTimestamp("created_at").toLocalDateTime()));
+        }
+        rs.close();
+        request.setAttribute("blogs", blogs);
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+
     RequestDispatcher view = getServletContext().getRequestDispatcher("/views/blogs.jsp");
     view.forward(request, response);
   }
