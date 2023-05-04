@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <header>
-  <a href="/"
+  <a href="/blog"
     ><img
       alt="Логотип"
       id="top-image"
