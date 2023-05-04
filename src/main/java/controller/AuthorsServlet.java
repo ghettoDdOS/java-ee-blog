@@ -27,7 +27,7 @@ public class AuthorsServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   ConnectionProperty prop;
-  String select_all_authors = "SELECT id, full_name, email, created_at FROM author";
+  String select_all_authors = "SELECT id, full_name, email, created_at FROM author ORDER BY id ASC";
   String insert_author = "INSERT INTO author (full_name, email, created_at) VALUES(?, ?, ?)";
   ArrayList<Author> authors = new ArrayList<Author>();
   String userPath;

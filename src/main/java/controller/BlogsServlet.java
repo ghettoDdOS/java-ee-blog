@@ -30,8 +30,8 @@ public class BlogsServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   ConnectionProperty prop;
-  String select_all_blogs = "SELECT id, title, content, created_at, id_author FROM blog";
-  String select_all_authors = "SELECT id, full_name, email, created_at FROM author";
+  String select_all_blogs = "SELECT id, title, content, created_at, id_author FROM blog ORDER BY id ASC";
+  String select_all_authors = "SELECT id, full_name, email, created_at FROM author ORDER BY id ASC";
   String insert_blog = "INSERT INTO blog (title, content, created_at, id_author) VALUES(?,?,?,?)";
   ArrayList<Author> authors = new ArrayList<Author>();
   ArrayList<Blog> blogs = new ArrayList<Blog>();
