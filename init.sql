@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS blog
     id_author integer NOT NULL,
     CONSTRAINT blog_pkey PRIMARY KEY (id),
     CONSTRAINT blog_author_fkey FOREIGN KEY (id_author)
-      REFERENCES public.author (id)
+      REFERENCES public.author (id) ON DELETE SET NULL
 );
