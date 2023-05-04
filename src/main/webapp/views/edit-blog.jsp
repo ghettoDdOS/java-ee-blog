@@ -60,7 +60,7 @@
                         width="20"
                       >
                         <a
-                          href='<c:url value="/edit-blog?id=${blog.getId()}" />'
+                          href='<c:url value="/edit-author?id=${blog.getId()}" />'
                           role="button"
                           class="btn btn-outline-primary"
                         >
@@ -76,7 +76,7 @@
                         width="20"
                       >
                         <a
-                          href='<c:url value="/delete-blog?id=${blog.getId()}"/>'
+                          href='<c:url value="/delete-author?id=${blog.getId()}"/>'
                           role="button"
                           class="btn btn-outline-primary"
                         >
@@ -101,6 +101,17 @@
               class="bg-secondary p-3 rounded"
             >
               <div class="form-group">
+                <label for="id">Код блога</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="id"
+                  name="id"
+                  readonly
+                  value="${blogsEdit[0].getId()}"
+                />
+              </div>
+              <div class="form-group">
                 <label for="title">Заголовок</label>
                 <input
                   type="text"
@@ -108,6 +119,7 @@
                   id="title"
                   name="title"
                   required
+                  value="${blogsEdit[0].getTitle()}"
                 />
               </div>
               <div class="form-group">
@@ -118,7 +130,7 @@
                   id="content"
                   rows="3"
                   required
-                ></textarea>
+                >${blogsEdit[0].getContent()}</textarea>
               </div>
               <div class="form-group">
                 <label for="id_author">Автор</label>
@@ -127,6 +139,7 @@
                   id="id_author"
                   name="id_author"
                   required
+                  value="${blogsEdit[0].getIdAuthor()}"
                 >
                   <option disabled>Выберите автора</option>
                   <c:forEach
@@ -139,12 +152,30 @@
                   </c:forEach>
                 </select>
               </div>
+              <div class="form-group">
+                <label for="createdAt">Дата создания</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="createdAt"
+                  name="createdAt"
+                  readonly
+                  value="${blogsEdit[0].getCreatedAt()}"
+                />
+              </div>
               <button
                 type="submit"
                 class="btn btn-primary"
               >
-                Добавить
+                Редактировать
               </button>
+              <a
+                href='<c:url value="/blogs" />'
+                role="button"
+                class="btn btn-secondary"
+              >
+                Отменить/Возврат
+              </a>
             </form>
           </div>
         </div>
