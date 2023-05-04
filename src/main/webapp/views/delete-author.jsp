@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-4">
-            <h1 class="bg-info p-2 rounded text-center">Редактирование автора</h1>
+            <h1 class="bg-info p-2 rounded text-center">Удалить автора</h1>
             <form
               method="POST"
               action=""
