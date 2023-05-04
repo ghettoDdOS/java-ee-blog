@@ -60,7 +60,7 @@
                         width="20"
                       >
                         <a
-                          href='<c:url value="/edit-author?id=${blog.getId()}" />'
+                          href='<c:url value="/edit-blog?id=${blog.getId()}" />'
                           role="button"
                           class="btn btn-outline-primary"
                         >
@@ -76,7 +76,7 @@
                         width="20"
                       >
                         <a
-                          href='<c:url value="/delete-author?id=${blog.getId()}"/>'
+                          href='<c:url value="/delete-blog?id=${blog.getId()}"/>'
                           role="button"
                           class="btn btn-outline-primary"
                         >
